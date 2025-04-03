@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stock Tracker - Home</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<!-- Task Bar -->
+<header>
+    <nav class="task-bar">
+        <a href="/home">Home</a>
+        <a href="/today">Today</a>
+        <input type="text" placeholder="Search stock...">
+    </nav>
+</header>
+
+<!-- Body -->
+<main>
+
+    <!-- Nút thêm giao dịch -->
+    <button class="add-btn" onclick="openPopup()">Add Transaction</button>
+
+    <!-- Popup nhập giao dịch -->
+    <div class="popup-form" id="transactionPopup">
+        <div class="popup-content">
+            <!-- Header chứa tiêu đề và 2 nút Save, Cancel -->
+            <div class="popup-header">
+                <h2>Add Transaction</h2>
+                <div>
+                    <button class="save-btn" onclick="saveTransaction()">Save</button>
+                    <button class="close-btn" onclick="closePopup()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Form nhập dữ liệu -->
+            <div class="popup-body">
+                <div class="form-group">
+                    <label>Stock:</label>
+                    <input type="text" id="stock" placeholder="Enter stock name">
+                </div>
+                <div class="form-group">
+                    <label>Type:</label>
+                    <select id="type">
+                        <option value="Buy">Buy</option>
+                        <option value="Sell">Sell</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity:</label>
+                    <input type="number" id="quantity" placeholder="Enter quantity">
+                </div>
+                <div class="form-group">
+                    <label>Price:</label>
+                    <input type="number" id="price" placeholder="Enter price">
+                </div>
+                <div class="form-group">
+                    <label for="datetime">Date & Time</label>
+                    <input type="datetime-local" id="datetime" name="datetime">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thống kê lời/lỗ -->
+    <div class="portfolio-summary">
+        <div class="summary-left">
+            <section class="summary">
+                <h2>Portfolio Summary</h2>
+                <p>Total Investment: <span th:text="${totalInvestment}"></span></p>
+                <p>Current Value: <span th:text="${currentValue}"></span></p>
+                <p>Profit/Loss: <span th:text="${profitLoss}" class="profit-loss"></span></p>
+            </section>
+        </div>
+        <div class="summary-right">
+            <!-- Biểu đồ tròn sẽ được hiển thị ở đây -->
+            <canvas id="portfolioChart" width="300" height="300"></canvas>
+        </div>
+    </div>
+
+
+    <!-- Bảng lịch sử giao dịch -->
+    <section class="transaction-history">
+        <h2>Transaction History</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Stock</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <td th:text="${transaction.date}"></td>
+                <td th:text="${transaction.stock}"></td>
+                <td th:text="${transaction.type}"></td>
+                <td th:text="${transaction.quantity}"></td>
+                <td th:text="${transaction.price}"></td>
+                <td th:text="${transaction.total}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Phân trang -->
+        <div class="pagination">
+            <a th:if="${currentPage > 1}" th:href="@{'/home?page=' + ${currentPage - 1}}">&laquo; Prev</a>
+            <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+            <a th:if="${currentPage < totalPages}" th:href="@{'/home?page=' + ${currentPage + 1}}">Next &raquo;</a>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Copyright KOPW</p>
+</footer>
+
+<script>
+    function openPopup() {
+        document.getElementById("transactionPopup").style.display = "flex";
+
+        const now = new Date();
+        const localDatetime = new Date(now.getTime() - (now.getTimezoneOffset() * 60000));
+
+        const formattedDatetime = localDatetime.toISOString().slice(0, 16);
+
+        document.getElementById("datetime").value = formattedDatetime;
+    }
+
+    function closePopup() {
+        document.getElementById("transactionPopup").style.display = "none";
+    }
+
+    function saveTransaction() {
+        alert("Transaction saved!");
+        closePopup();
+    }
+</script>
+<!-- Thêm Chart.js từ CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:src="@{/script.js}"></script>
+
+</body>
+</html>

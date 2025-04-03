@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.task-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-bar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+.task-bar input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.add-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    position: fixed;
+    right: 20px;
+    top: 70px; /* Cách taskbar một chút */
+}
+
+.add-btn:hover {
+    background-color: #45a049;
+}
+
+/* Popup mặc định ẩn */
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa popup */
+    width: 100%; /* Chiếm 1/2 chiều rộng màn hình */
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền bán trong suốt */
+    height: 100%; /* Chiều cao đầy đủ */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Đảm bảo popup nằm trên các phần tử khác */
+}
+
+/* Nội dung của popup */
+.popup-content {
+    background: white;
+    width: 50%; /* Chiếm 100% chiều rộng popup */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 800px; /* Giới hạn chiều rộng tối đa */
+}
+
+/* Header chứa tiêu đề và nút Save, Cancel */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Nút Save và Cancel */
+.popup-header button {
+    padding: 8px 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.save-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.close-btn {
+    background: red;
+    color: white;
+}
+
+/* Body của form */
+.popup-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nhóm form với label bên trái, input bên phải */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Định dạng label */
+.form-group label {
+    width: 30%;
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Định dạng input */
+.form-group input,
+.form-group select {
+    width: 65%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Nút Save và Cancel trong popup */
+.popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.popup-footer button {
+    padding: 8px 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.close-btn {
+    background-color: red;
+    color: white;
+}
+
+main {
+    padding: 20px;
+}
+
+.portfolio-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.summary-left {
+    width: 60%;
+    padding-right: 20px;
+}
+
+.summary-right {
+    width: 35%; /* Chiều rộng của phần biểu đồ tròn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profit-loss {
+    font-weight: bold;
+    color: red;
+}
+.transaction-history {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #333;
+    color: white;
+}
+.pagination {
+    margin-top: 15px;
+    text-align: center;
+}
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    background: #333;
+    color: white;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
