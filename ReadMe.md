@@ -1,4 +1,4 @@
-Teck stack:
+Tech stack:
 - Java 17
 - Spring 3x
 - Thymeleaf

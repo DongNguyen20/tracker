@@ -1,0 +1,31 @@
+<div class="transaction-history" th:fragment="transactionHistory(transactions, currentPage, totalPages)">
+    <table>
+        <thead>
+        <tr>
+            <th>Ngày</th>
+            <th>Mã CP</th>
+            <th>Loại</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="transaction : ${transactions}">
+            <td th:text="${transaction.date}"></td>
+            <td th:text="${transaction.stock}"></td>
+            <td th:text="${transaction.type}"></td>
+            <td th:text="${transaction.quantity}"></td>
+            <td th:text="${transaction.price}"></td>
+            <td th:text="${transaction.total}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    <div class="pagination">
+        <a th:if="${currentPage > 0}" th:href="@{/home(page=${currentPage - 1})}">Trước</a>
+        <span>Trang <span th:text="${currentPage + 1}"></span> / <span th:text="${totalPages}"></span></span>
+        <a th:if="${currentPage + 1 < totalPages}" th:href="@{/home(page=${currentPage + 1})}">Sau</a>
+    </div>
+</div>
