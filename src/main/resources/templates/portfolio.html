@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/css/taskbar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" type="image/png" href="/img/logo.png">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .gain {
+            color: green;
+        }
+        .loss {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!-- Task Bar -->
+<header>
+    <div th:replace="fragments/taskbar :: siteTaskbar"></div>
+</header>
+
+<main>
+    <h2>Current Stock Holdings</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mã CP</th>
+                <th>Công ty</th>
+                <th>SL</th>
+                <th>Giá TB</th>
+                <th>Giá Hiện Tại</th>
+                <th>Lời/Lỗ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="stock : ${holdings}">
+                <td th:text="${stock.stockCode}"></td>
+                <td th:text="${stock.stockName}"></td>
+                <td th:text="${stock.quantity}"></td>
+                <td th:text="${#numbers.formatDecimal(stock.averagePrice, 0, 'COMMA', 0, 'POINT')}"></td>
+                <td th:text="${#numbers.formatDecimal(stock.currentPrice, 0, 'COMMA', 0, 'POINT')}"></td>
+                <td th:text="${#numbers.formatDecimal(stock.profitLoss, 0, 'COMMA', 0, 'POINT')}"
+                    th:class="${stock.profitLoss >= 0 ? 'gain' : 'loss'}"></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+<!-- Footer -->
+<div th:replace="fragments/footer :: siteFooter"></div>
+
+</body>
+</html>

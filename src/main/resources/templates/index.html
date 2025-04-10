@@ -3,74 +3,31 @@
 <head>
     <title>Stock Tracker - Home</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/css/taskbar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/addStockTransaction.css}">
     <link rel="icon" type="image/png" href="/img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <!-- Task Bar -->
 <header>
-    <nav class="task-bar">
-        <a href="/home">Home</a>
-        <a href="/today">Today</a>
-
-        <!-- Dropdown mới -->
-        <div class="dropdown">
-            <button class="dropbtn">Tracking</button>
-            <div class="dropdown-content">
-                <a href="/tracking/money">Tracking Money</a>
-                <a href="/tracking/stock">Tracking Stock</a>
-            </div>
-        </div>
-
-        <input type="text" placeholder="Search stock...">
-    </nav>
+    <div th:replace="fragments/taskbar :: siteTaskbar"></div>
 </header>
 
 <!-- Body -->
 <main>
 
     <!-- Nút thêm giao dịch -->
-    <button class="add-btn" onclick="openPopup()">Add Transaction</button>
+    <button class="add-button" onclick="openPopup()">
+        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+        </svg>
+        <span>add Transaction</span>
+    </button>
 
-    <!-- Popup nhập giao dịch -->
-    <div class="popup-form" id="transactionPopup">
-        <div class="popup-content">
-            <!-- Header chứa tiêu đề và 2 nút Save, Cancel -->
-            <div class="popup-header">
-                <h2>Add Transaction</h2>
-                <div>
-                    <button class="save-btn" onclick="saveTransaction()">Save</button>
-                    <button class="close-btn" onclick="closePopup()">Cancel</button>
-                </div>
-            </div>
-
-            <!-- Form nhập dữ liệu -->
-            <div class="popup-body">
-                <div class="form-group">
-                    <label>Stock:</label>
-                    <input type="text" id="stock" placeholder="Enter stock name">
-                </div>
-                <div class="form-group">
-                    <label>Type:</label>
-                    <select id="type">
-                        <option value="Buy">Buy</option>
-                        <option value="Sell">Sell</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Quantity:</label>
-                    <input type="number" id="quantity" placeholder="Enter quantity">
-                </div>
-                <div class="form-group">
-                    <label>Price:</label>
-                    <input type="number" id="price" placeholder="Enter price">
-                </div>
-                <div class="form-group">
-                    <label for="datetime">Date & Time</label>
-                    <input type="datetime-local" id="datetime" name="datetime">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div th:replace="fragments/addStockTransaction :: addStockTransaction"></div>
 
     <!-- Thống kê lời/lỗ -->
     <div class="portfolio-summary">
@@ -95,9 +52,7 @@
 </main>
 
 <!-- Footer -->
-<footer>
-    <p>&copy; 2025 Copyright KOPW</p>
-</footer>
+<div th:replace="fragments/footer :: siteFooter"></div>
 
 <script>
     function openPopup() {

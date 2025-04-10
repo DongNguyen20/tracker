@@ -1,0 +1,20 @@
+<nav th:fragment="siteTaskbar" class="task-bar">
+    <a href="/home">Home</a>
+    <a href="/today">Today</a>
+
+    <!-- Dropdown mới -->
+    <div class="dropdown">
+        <button class="dropbtn">Tracking</button>
+        <div class="dropdown-content">
+            <a href="/tracking/money">Tracking Money</a>
+            <a href="/portfolio">Tracking Stock</a>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Bạn muốn tìm gì?...">
+        <button>
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</nav>
