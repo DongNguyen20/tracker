@@ -80,3 +80,40 @@ new Chart(ctx, config);
 //         new Chart(ctx, config);
 //     })
 //     .catch(error => console.error('Error fetching portfolio data:', error));
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const rowViewSelect = document.getElementById("row-view");
+
+    function loadTransactions(page, size) {
+        fetch(`/home/transactions?page=${page}&size=${size}`)
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("transaction-history-container").innerHTML = html;
+            });
+
+        fetch(`/home/pagination?page=${page}&size=${size}`)
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("pagination-container").innerHTML = html;
+                attachPaginationEvents();
+            });
+    }
+
+    function attachPaginationEvents() {
+        document.querySelectorAll(".pagination a[data-page]").forEach(a => {
+            a.addEventListener("click", function (event) {
+                event.preventDefault();
+                const page = this.getAttribute("data-page");
+                const size = rowViewSelect.value;
+                loadTransactions(page, size);
+            });
+        });
+    }
+
+    rowViewSelect.addEventListener("change", function () {
+        loadTransactions(0, this.value);
+    });
+
+    attachPaginationEvents();
+});

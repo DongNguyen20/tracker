@@ -1,4 +1,6 @@
-<div class="transaction-history" th:fragment="transactionHistory(transactions, currentPage, totalPages)">
+<div id="transaction-table" class="transaction-history"
+     th:fragment="transactionHistory(transactions, currentPage, totalPages, size)">
+
     <table>
         <thead>
         <tr>
@@ -21,7 +23,4 @@
         </tr>
         </tbody>
     </table>
-
-    <!-- Phân trang -->
-    <div th:replace="fragments/pagination :: paging(${currentPage}, ${totalPages}, ${size})"></div>
 </div>

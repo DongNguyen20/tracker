@@ -45,15 +45,11 @@
             <span>-</span>
             <input type="date" class="toDate" placeholder="To date">
 
-            <form id="paginationForm" method="get" action="/home">
-                <input type="hidden" name="page" value="0" /> <!-- reset về page 0 mỗi khi thay đổi -->
-
-                <select name="size" class="row-view" onchange="document.getElementById('paginationForm').submit()">
-                    <option value="3" th:selected="${size == 3}">3</option>
-                    <option value="10" th:selected="${size == 10}">10</option>
-                    <option value="20" th:selected="${size == 20}">20</option>
-                </select>
-            </form>
+            <select id="row-view" class="row-view">
+                <option value="3" th:selected="${size == 3}">3</option>
+                <option value="10" th:selected="${size == 10}">10</option>
+                <option value="20" th:selected="${size == 20}">20</option>
+            </select>
 
             <!-- Nút thêm giao dịch -->
             <button class="add-button" onclick="openPopup()">
@@ -67,7 +63,16 @@
     </div>
 
     <div th:replace="fragments/addStockTransaction :: addStockTransaction"></div>
-    <div th:replace="fragments/transaction-history :: transactionHistory(${transactions}, ${currentPage}, ${totalPages})"></div>
+
+    <!-- Lịch sử giao dịch -->
+    <div id="transaction-history-container">
+        <div th:replace="fragments/transaction-history :: transactionHistory(${transactions}, ${currentPage}, ${totalPages}, ${size})"></div>
+    </div>
+
+    <!-- Phân trang -->
+    <div id="pagination-container">
+        <div th:replace="fragments/pagination :: paging(${currentPage}, ${totalPages}, ${size})"></div>
+    </div>
 </main>
 
 <!-- Footer -->

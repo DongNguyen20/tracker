@@ -1,12 +1,12 @@
 <!-- fragments/pagination.html -->
 <div th:fragment="paging(currentPage, totalPages, size)">
     <div class="pagination">
-        <a th:if="${currentPage > 0}"
-           th:href="@{/home(page=${currentPage - 1}, size=${size})}">Trước</a>
+        <a href="#" th:if="${currentPage > 0}"
+           th:attr="data-page=${currentPage - 1}">Trước</a>
 
         <span>Trang <span th:text="${currentPage + 1}"></span> / <span th:text="${totalPages}"></span></span>
 
-        <a th:if="${currentPage + 1 < totalPages}"
-           th:href="@{/home(page=${currentPage + 1}, size=${size})}">Sau</a>
+        <a href="#" th:if="${currentPage + 1 < totalPages}"
+           th:attr="data-page=${currentPage + 1}">Sau</a>
     </div>
 </div>
