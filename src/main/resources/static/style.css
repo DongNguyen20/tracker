@@ -36,7 +36,7 @@ body {
 }
 
 
-.add-button {
+.transaction-controls .add-button {
     display: flex;
     align-items: center;
     font-family: inherit;
@@ -54,7 +54,7 @@ body {
     border: none;
     box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
     letter-spacing: 0.05em;
-    border-radius: 20em;
+    border-radius: 50em;
 }
 
 .add-button svg {

@@ -71,7 +71,7 @@
 
     <!-- Phân trang -->
     <div id="pagination-container">
-        <div th:replace="fragments/pagination :: paging(${currentPage}, ${totalPages}, ${size})"></div>
+        <div th:replace="fragments/pagination :: paging(${currentPage}, ${totalPages}, ${size}, '/home')"></div>
     </div>
 </main>
 

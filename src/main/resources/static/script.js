@@ -106,7 +106,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
                 const page = this.getAttribute("data-page");
                 const size = rowViewSelect.value;
-                loadTransactions(page, size);
+                const url = this.getAttribute("data-url") || "/home"; // fallback nếu không có
+
+                fetch(`${url}/transactions?page=${page}&size=${size}`)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("transaction-history-container").innerHTML = html;
+                    });
+
+                fetch(`${url}/pagination?page=${page}&size=${size}`)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("pagination-container").innerHTML = html;
+                        attachPaginationEvents();
+                    });
             });
         });
     }
