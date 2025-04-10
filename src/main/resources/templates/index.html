@@ -5,7 +5,7 @@
     <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/css/taskbar.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
-    <link rel="stylesheet" th:href="@{/css/addStockTransaction.css}">
+    <link rel="stylesheet" th:href="@{/css/formAddStockTransaction.css}">
     <link rel="icon" type="image/png" href="/img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -17,18 +17,6 @@
 
 <!-- Body -->
 <main>
-
-    <!-- Nút thêm giao dịch -->
-    <button class="add-button" onclick="openPopup()">
-        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
-        </svg>
-        <span>add Transaction</span>
-    </button>
-
-    <div th:replace="fragments/addStockTransaction :: addStockTransaction"></div>
-
     <!-- Thống kê lời/lỗ -->
     <div class="portfolio-summary">
         <div class="summary-left">
@@ -47,7 +35,38 @@
 
 
     <!-- Bảng lịch sử giao dịch -->
-    <h3>Transaction history</h3>
+    <div class="transaction">
+        <!-- (1) Tiêu đề -->
+        <h3>Transaction history</h3>
+
+        <!-- Dòng control bên phải -->
+        <div class="transaction-controls">
+            <input type="date" class="fromDate" placeholder="From date">
+            <span>-</span>
+            <input type="date" class="toDate" placeholder="To date">
+
+            <form id="paginationForm" method="get" action="/home">
+                <input type="hidden" name="page" value="0" /> <!-- reset về page 0 mỗi khi thay đổi -->
+
+                <select name="size" class="row-view" onchange="document.getElementById('paginationForm').submit()">
+                    <option value="3" th:selected="${size == 3}">3</option>
+                    <option value="10" th:selected="${size == 10}">10</option>
+                    <option value="20" th:selected="${size == 20}">20</option>
+                </select>
+            </form>
+
+            <!-- Nút thêm giao dịch -->
+            <button class="add-button" onclick="openPopup()">
+                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+                </svg>
+                <span>add Transaction</span>
+            </button>
+        </div>
+    </div>
+
+    <div th:replace="fragments/addStockTransaction :: addStockTransaction"></div>
     <div th:replace="fragments/transaction-history :: transactionHistory(${transactions}, ${currentPage}, ${totalPages})"></div>
 </main>
 
