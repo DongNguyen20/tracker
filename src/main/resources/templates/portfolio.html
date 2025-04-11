@@ -5,6 +5,7 @@
     <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/css/taskbar.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/actionButton.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" type="image/png" href="/img/logo.png">
     <style>
@@ -43,6 +44,7 @@
                 <th>Giá TB</th>
                 <th>Giá Hiện Tại</th>
                 <th>Lời/Lỗ</th>
+                <th class="action-col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -54,12 +56,29 @@
                 <td th:text="${#numbers.formatDecimal(stock.currentPrice, 0, 'COMMA', 0, 'POINT')}"></td>
                 <td th:text="${#numbers.formatDecimal(stock.profitLoss, 0, 'COMMA', 0, 'POINT')}"
                     th:class="${stock.profitLoss >= 0 ? 'gain' : 'loss'}"></td>
+                <td class="action-col">
+                    <div th:insert="fragments/actionButton :: actionButtons(${1})"></div>
+                </td>
             </tr>
         </tbody>
     </table>
 </main>
 <!-- Footer -->
 <div th:replace="fragments/footer :: siteFooter"></div>
+<script>
+    function viewTransaction(id) {
+        alert("View transaction with ID: " + id);
+    }
 
+    function editTransaction(id) {
+        alert("Edit transaction with ID: " + id);
+    }
+
+    function deleteTransaction(id) {
+        if (confirm("Are you sure you want to delete transaction ID: " + id + "?")) {
+            alert("Deleted transaction ID: " + id);
+        }
+    }
+</script>
 </body>
 </html>

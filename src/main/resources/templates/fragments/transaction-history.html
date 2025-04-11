@@ -10,6 +10,7 @@
             <th>Số lượng</th>
             <th>Giá</th>
             <th>Tổng</th>
+            <th class="action-col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,9 @@
             <td th:text="${transaction.quantity}"></td>
             <td th:text="${transaction.price}"></td>
             <td th:text="${transaction.total}"></td>
+            <td class="action-col">
+                <div th:insert="fragments/actionButton :: actionButtons(${1})"></div>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -7,7 +7,11 @@ body {
     justify-content: center;
     background-color: #f4f4f4;
 }
-
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 .transaction {
     margin: 20px;
 }
@@ -114,6 +118,10 @@ th, td {
 th {
     background-color: #333;
     color: white;
+}
+.action-col {
+    width: 90px;
+    text-align: center;
 }
 .pagination {
     margin-top: 15px;
