@@ -31,7 +31,7 @@ public class HomeController {
     public String getTransactions(@RequestParam int page,
                                   @RequestParam int size,
                                   Model model) {
-        model.addAttribute("transactions", loadTransactionData(0, size, model));
+        model.addAttribute("transactions", loadTransactionData(page, size, model));
         return "fragments/transaction-history :: transactionHistory";
     }
 
@@ -47,7 +47,7 @@ public class HomeController {
     public String getPagination(@RequestParam int page,
                                 @RequestParam int size,
                                 Model model) {
-        loadTransactionData(0, size, model);
+        loadTransactionData(page, size, model);
         model.addAttribute("baseUrl", "/home");
 
         return "fragments/pagination :: paging";

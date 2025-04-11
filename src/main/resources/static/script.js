@@ -21,6 +21,11 @@ const config = {
         plugins: {
             legend: {
                 position: 'top', // Vị trí legend
+                align: 'start',
+                labels: {
+                    boxWidth: 20,
+                    padding: 15
+                }
             },
             tooltip: {
                 callbacks: {

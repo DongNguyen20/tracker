@@ -27,9 +27,9 @@
                 <p>Profit/Loss: <span th:text="${profitLoss}" class="profit-loss"></span></p>
             </section>
         </div>
-        <div class="summary-right">
+        <div class="summary-right" style="width: 250px; height: 250px;">
             <!-- Biểu đồ tròn sẽ được hiển thị ở đây -->
-            <canvas id="portfolioChart" width="300" height="300"></canvas>
+            <canvas id="portfolioChart"></canvas>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                     <path d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
                 </svg>
-                <span>add Transaction</span>
+                <span>add</span>
             </button>
         </div>
     </div>
